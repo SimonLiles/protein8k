@@ -4,8 +4,9 @@ Title: Perfom Analysis and Create Visualizations of Proteins
 Version: 0.0.9000
 Author: Simon Liles
 Maintainer: Simon Liles <simon@sveoti.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: This Package can be used for the reading of Protein Data Bank (PDB)
+    files, perform analysis, and visualize and model the proteins in 3D. It can 
+    also create small .gif files of a protein for presentations. 
+License: CC0
 Encoding: UTF-8
 LazyData: true

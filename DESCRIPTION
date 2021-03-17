@@ -1,9 +1,9 @@
 Package: protein8k
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Title: Perfom Analysis and Create Visualizations of Proteins
+Version: 0.0.9000
+Author: Simon Liles
+Maintainer: Simon Liles <simon@sveoti.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?

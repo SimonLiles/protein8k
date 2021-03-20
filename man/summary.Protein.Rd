@@ -2,20 +2,22 @@
 % Please edit documentation in R/summary.Protein.R
 \name{summary.Protein}
 \alias{summary.Protein}
-\title{summary.protein}
+\title{summary.Protein}
 \usage{
-summary.Protein(object)
+summary.Protein(object, ...)
 }
 \arguments{
 \item{object}{A Protein object of either S3 or S4 type.}
+
+\item{...}{other objects passed to summary(). Currently not supported.}
 }
 \description{
-summary.protein
+summary.Protein
 }
 \details{
 Prints a description of the protein object to the console. The lines
    of out put are as follows.
-   \itemize{
+   \enumerate{
    \item Prints if it is S3 or S4 object type.
    \item ID Code of the PDB and the Data it was deposited in the Data Bank.
    \item The Classification of the protein.

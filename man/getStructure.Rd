@@ -9,6 +9,14 @@ getStructure(protein)
 \arguments{
 \item{protein}{input for a a protein object}
 }
+\value{
+Returns a dataframe containing the atomic record. There are 15 variables
+ in this data frame.
+}
 \description{
-Retrieves Protein Structure from Protein Object
+Retrieve the Atomic Record from a Protein Object
+}
+\details{
+This is an accessor function for retrieving the Atomic Record from a
+ Protein object.
 }

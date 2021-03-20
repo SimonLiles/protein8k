@@ -3,9 +3,8 @@
 \docType{class}
 \name{Protein-class}
 \alias{Protein-class}
-\title{Protein Class Definitions
-Is used to Define Protein Objects of S3 and S4 Types}
+\title{Protein Class Definitions}
 \description{
-Protein Class Definitions
-Is used to Define Protein Objects of S3 and S4 Types
+Protein Class used to Define Protein Objects of S3 and S4 Types.
+Currently still in development, Integrity checks still need to be added.
 }

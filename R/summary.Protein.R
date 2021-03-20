@@ -1,10 +1,11 @@
-#' summary.protein
+#'summary.Protein
 #'
 #'@param object A Protein object of either S3 or S4 type.
+#'@param ... other objects passed to summary(). Currently not supported.
 #'
 #'@details Prints a description of the protein object to the console. The lines
 #'    of out put are as follows.
-#'    \itemize{
+#'    \enumerate{
 #'    \item Prints if it is S3 or S4 object type.
 #'    \item ID Code of the PDB and the Data it was deposited in the Data Bank.
 #'    \item The Classification of the protein.
@@ -12,11 +13,12 @@
 #'    \item The number of rows in the Atomic Record.
 #'    }
 #'
-#'
 #'@export summary.Protein
+#'@exportMethod summary
+#'@rawNamespace S3method(summary, Protein)
 
 #Summarize the object data
-summary.Protein <- function(object) {
+summary.Protein <- function(object, ...) {
   #UseMethod("summary", "Protein")
 
   #Break protein object down for simpler decoding and summary
@@ -46,9 +48,10 @@ summary.Protein <- function(object) {
 
 #Implement as S4 generic
 setGeneric("summary", valueClass = "Protein")
-setMethod("summary", signature(object = "Protein"), function(object){
-  summary.Protein(object = object)
+setMethod("summary", signature(object = "Protein"), function(object, ...){
+  summary.Protein(object = object, ...)
 })
 
 #Implement as S3 generic
 UseMethod("summary", "Protein")
+#S3method(summary, Protein)

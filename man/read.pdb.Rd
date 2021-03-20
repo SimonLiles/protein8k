@@ -9,11 +9,21 @@ read.pdb(fileName, createAsS4 = FALSE)
 \arguments{
 \item{fileName}{character string for location and name of file to be read.}
 
-\item{createAsS4}{logical indicating whether to create the new protein object as S4 or not. Defaults to FALSE if not specified.}
+\item{createAsS4}{Logical indicating whether to create the new protein object
+as S4 or not. Defaults to FALSE if not specified. This argument is optional.}
 }
 \value{
 A new protein object as either an S3 or S4 object.
+
+In general terms, the new object will be a list of two, a data frame
+ containing the atomic record, and a list of header elements.
 }
 \description{
-read.pdb
+Read in a Protein Data Bank file
+}
+\details{
+Reads a Protein Data Bank file (PDB) from the given location. The
+ function then parses the file and creates a new object of the Protein class.
+ This object can be either defined as an S3 or S4 object if different
+ capabilities are required.
 }

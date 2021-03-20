@@ -1,14 +1,6 @@
-#'Protein Class Definitions
-#'Is used to Define Protein Objects of S3 and S4 Types
-
-#* ProteinClass ALPHA V0.0.01 13.03.2021
-#*
-#* Author: Simon Liles
-#*
-#* About:
-#* This file contains the current build for the protein class
-#* Class is designed to be handled as S3 or as S4 type object
-#* *#
+#'@title Protein Class Definitions
+#'@description Protein Class used to Define Protein Objects of S3 and S4 Types.
+#'Currently still in development, Integrity checks still need to be added.
 
 #S4 Protein Class Declaration ##################################################
 setClass("Protein", representation(

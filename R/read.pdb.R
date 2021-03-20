@@ -1,12 +1,26 @@
 #'read.pdb
 #'
+#'@description Read in a Protein Data Bank file
+#'
+#'@usage read.pdb(fileName, createAsS4 = FALSE)
+#'
 #'@param fileName character string for location and name of file to be read.
 #'
-#'@param createAsS4 logical indicating whether to create the new protein object as S4 or not. Defaults to FALSE if not specified.
+#'@param createAsS4 Logical indicating whether to create the new protein object
+#'  as S4 or not. Defaults to FALSE if not specified. This argument is optional.
+#'
+#'@details Reads a Protein Data Bank file (PDB) from the given location. The
+#'  function then parses the file and creates a new object of the Protein class.
+#'  This object can be either defined as an S3 or S4 object if different
+#'  capabilities are required.
 #'
 #'@returns A new protein object as either an S3 or S4 object.
 #'
+#'@returns In general terms, the new object will be a list of two, a data frame
+#'  containing the atomic record, and a list of header elements.
+#'
 #'@export read.pdb
+#'@import methods
 
 # Read a raw pdb file into a protein class representation
 #TODO: Add more fault checking.
@@ -62,17 +76,6 @@ read.pdb <- function(fileName, createAsS4 = FALSE) {
 
   return(protein)
 }
-
-
-#Implement as S4 generic
-#setGeneric("read.pdb", valueClass = "Protein")
-#setMethod("read.pdb", signature(fileName = "character", createAsS4 = "logical"),
-#          function(fileName, createAsS4){
-#  read.pdb.Protein(fileName = fileName, createAsS4 = createAsS4)
-#})
-
-#Implement as S3 generic
-#UseMethod("read.pdb", "Protein")
 
 #Parsing functions #############################################################
 

@@ -4,7 +4,7 @@
 \alias{summary.Protein}
 \title{summary.protein}
 \usage{
-\method{summary}{Protein}(protein)
+summary.Protein(object)
 }
 \description{
 summary.protein

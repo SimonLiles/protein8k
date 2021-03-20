@@ -3,7 +3,7 @@
 
 #Summarize the object data
 summary.Protein <- function(object) {
-  UseMethod("summary", "Protein")
+  #UseMethod("summary", "Protein")
 
   #Break protein object down for simpler decoding and summary
 

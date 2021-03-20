@@ -6,6 +6,20 @@
 \usage{
 summary.Protein(object)
 }
+\arguments{
+\item{object}{A Protein object of either S3 or S4 type.}
+}
 \description{
 summary.protein
+}
+\details{
+Prints a description of the protein object to the console. The lines
+   of out put are as follows.
+   \itemize{
+   \item Prints if it is S3 or S4 object type.
+   \item ID Code of the PDB and the Data it was deposited in the Data Bank.
+   \item The Classification of the protein.
+   \item The title of the PDB.
+   \item The number of rows in the Atomic Record.
+   }
 }

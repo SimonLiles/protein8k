@@ -6,6 +6,14 @@
 \usage{
 read.pdb(fileName, createAsS4 = FALSE)
 }
+\arguments{
+\item{fileName}{character string for location and name of file to be read.}
+
+\item{createAsS4}{logical indicating whether to create the new protein object as S4 or not. Defaults to FALSE if not specified.}
+}
+\value{
+A new protein object as either an S3 or S4 object.
+}
 \description{
 read.pdb
 }

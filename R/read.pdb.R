@@ -1,4 +1,12 @@
 #'read.pdb
+#'
+#'@param fileName character string for location and name of file to be read.
+#'
+#'@param createAsS4 logical indicating whether to create the new protein object as S4 or not. Defaults to FALSE if not specified.
+#'
+#'@returns A new protein object as either an S3 or S4 object.
+#'
+#'@export read.pdb
 
 # Read a raw pdb file into a protein class representation
 #TODO: Add more fault checking.
@@ -54,6 +62,17 @@ read.pdb <- function(fileName, createAsS4 = FALSE) {
 
   return(protein)
 }
+
+
+#Implement as S4 generic
+#setGeneric("read.pdb", valueClass = "Protein")
+#setMethod("read.pdb", signature(fileName = "character", createAsS4 = "logical"),
+#          function(fileName, createAsS4){
+#  read.pdb.Protein(fileName = fileName, createAsS4 = createAsS4)
+#})
+
+#Implement as S3 generic
+#UseMethod("read.pdb", "Protein")
 
 #Parsing functions #############################################################
 

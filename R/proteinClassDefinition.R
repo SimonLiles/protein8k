@@ -16,9 +16,6 @@ setClass("Protein", representation(
   header = "list")
 )
 
-#Declare Generics
-setMethod("summary", "Protein", summary.Protein)
-
 #S3 Protein Class Constructor ##################################################
 Protein <- function(prtn_strct, hdr) {
   #Integrity checks go here:

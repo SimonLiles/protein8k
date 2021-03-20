@@ -1,7 +1,7 @@
 Package: protein8k
 Type: Package
 Title: Perfom Analysis and Create Visualizations of Proteins
-Version: 0.0.9000
+Version: 0.0.0.9000
 Author: Simon Liles
 Maintainer: Simon Liles <simon@sveoti.net>
 Description: This Package can be used for the reading of Protein Data Bank (PDB)

@@ -4,7 +4,7 @@
 \alias{summary.Protein}
 \title{summary.Protein}
 \usage{
-summary.Protein(object, ...)
+\method{summary}{Protein}(object, ...)
 }
 \arguments{
 \item{object}{A Protein object of either S3 or S4 type.}

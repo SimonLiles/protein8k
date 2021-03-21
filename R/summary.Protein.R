@@ -1,5 +1,7 @@
 #'summary.Protein
 #'
+#'@method summary Protein
+#'
 #'@param object A Protein object of either S3 or S4 type.
 #'@param ... other objects passed to summary(). Currently not supported.
 #'

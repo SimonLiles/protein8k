@@ -7,7 +7,7 @@
 #'@param fileName character string for location and name of file to be read.
 #'
 #'@param createAsS4 Logical indicating whether to create the new protein object
-#'  as S4 or not. Defaults to FALSE if not specified. This argument is optional.
+#'  as S4 or not. Defaults to TRUE if not specified. This argument is optional.
 #'
 #'@details Reads a Protein Data Bank file (PDB) from the given location. The
 #'  function then parses the file and creates a new object of the Protein class.
@@ -24,7 +24,7 @@
 
 # Read a raw pdb file into a protein class representation
 #TODO: Add more fault checking.
-read.pdb <- function(fileName, createAsS4 = FALSE) {
+read.pdb <- function(fileName, createAsS4 = TRUE) {
   #Read file, seperate by line
   fileName = "1aieH" #Only for development purposes
   file <- scan(file = fileName, what = "character", sep = "\n")

@@ -2,7 +2,7 @@
 #'
 #'@description Read in a Protein Data Bank file
 #'
-#'@usage read.pdb(fileName, createAsS4 = FALSE)
+#'@usage read.pdb(fileName, createAsS4 = TRUE)
 #'
 #'@param fileName character string for location and name of file to be read.
 #'
@@ -38,40 +38,59 @@ read.pdb <- function(fileName, createAsS4 = TRUE) {
 
   # Seperate the header and body ###############################################
   # Find first index of each tag in file body
-  bodyTagFirstIndices <- c(which(startsWith(file, "ATOM"))[1],
-                           which(startsWith(file, "TER"))[1],
-                           which(startsWith(file, "HETATM"))[1])
+  #bodyTagFirstIndices <- c(which(startsWith(file, "ATOM"))[1],
+  #                         which(startsWith(file, "TER"))[1],
+  #                         which(startsWith(file, "HETATM"))[1])
 
   #Find the first index among all tags
-  beginBodyIndex <- min(bodyTagFirstIndices)
+  #beginBodyIndex <- min(bodyTagFirstIndices)
 
   #Find END tag
-  endTag <- which(startsWith(file, "END"))
+  #endTag <- which(startsWith(file, "END"))
 
   #Grab each section of the file for individual parsing
   #File Body
-  fileBody <- file[beginBodyIndex:(endTag - 1)]
+  #coord_sec <- file[beginBodyIndex:(endTag - 1)] #Commented out to test below
 
-  #File Header
-  fileHeader <- file[1:(beginBodyIndex - 1)]
+  #Pull just records for the Title Section
+  title_sec <- file[c(which(startsWith(file, "HEADER")),
+                      which(startsWith(file, "OBSLTE")),
+                      which(startsWith(file, "TITLE ")),
+                      which(startsWith(file, "SPLIT")),
+                      which(startsWith(file, "CAVEAT")),
+                      which(startsWith(file, "COMPND")),
+                      which(startsWith(file, "SOURCE")),
+                      which(startsWith(file, "KEYWDS")),
+                      which(startsWith(file, "EXPDTA")),
+                      which(startsWith(file, "NUMMDL")),
+                      which(startsWith(file, "MDLTYP")),
+                      which(startsWith(file, "AUTHOR")),
+                      which(startsWith(file, "REVDAT")),
+                      which(startsWith(file, "SPRSDE")),
+                      which(startsWith(file, "REMARK")))]
 
+  #Pull just those records that contain Coordinate Section records
+  coord_sec <- file[c(which(startsWith(file, "ATOM  ")),
+                      which(startsWith(file, "HETATM")),
+                      which(startsWith(file, "ANISOU")),
+                      which(startsWith(file, "TER   ")))]
 
   # Parse each part of the file ################################################
-  # Parse file body
-  protein_structure <- pdb.parseBody(fileBody)
-
   # Parse File Header
-  protein_header <- pdb.parseHeader(fileHeader)
+  pdb_header <- pdb.parseHeader(title_sec)
+
+  # Parse file body
+  protein_structure <- pdb.parseCoordinates(coord_sec)
 
   # Return all associated pieces as single new protein object
 
   if(createAsS4 == TRUE) {
     #S4 object creation
-    protein <- new("Protein", structure = protein_structure,
-                   header = protein_header)
+    protein <- new("Protein", header = pdb_header,
+                   structure = protein_structure)
   } else {
     #S3 object creation
-    protein <- Protein(protein_structure, protein_header)
+    protein <- Protein(pdb_header, protein_structure)
   }
 
   return(protein)
@@ -82,32 +101,64 @@ read.pdb <- function(fileName, createAsS4 = TRUE) {
 # Creates a new data frame representing molecule sequence, position, and names,
 #   along with other necessary data.
 # TODO: Add documentation regarding columns and return data
-pdb.parseBody <- function(fileBody) {
+pdb.parseCoordinates <- function(fileBody) {
   # This block works for ATOM, HETATM, and TER. TER does not break the code, but
   #   does introduce NA's in most columns since it does not fill all fields
   #Subset for each column, convert to correct type if necessary
   record_type <- substr(fileBody, 1, 6)
-  serial_num <- as.integer(substr(fileBody, 7, 11))
-  atom_name <- substr(fileBody, 13, 16)
-  alt_location_id <- substr(fileBody, 17, 17)
-  residue_name <- substr(fileBody, 18, 20)
-  chain_id <- substr(fileBody, 22, 22)
-  residue_seq_num <- as.integer(substr(fileBody, 23, 26))
-  insert_residue_code <- substr(fileBody, 27, 27)
-  x_ortho_coord <- as.numeric(substr(fileBody, 31, 38))
-  y_ortho_coord <- as.numeric(substr(fileBody, 39, 46))
-  z_ortho_coord <- as.numeric(substr(fileBody, 47, 54))
-  occupancy <- as.numeric(substr(fileBody, 55, 60))
-  temp_factor <- as.numeric(substr(fileBody, 61, 66))
-  segment_id <- substr(fileBody, 73, 76)
-  element_symbol <- substr(fileBody, 77, 78)
 
-  #Store in dataframe
-  protein_structure <- data.frame(record_type, serial_num, atom_name, residue_name,
-                                  alt_location_id, chain_id, residue_seq_num,
-                                  insert_residue_code, x_ortho_coord, y_ortho_coord,
-                                  z_ortho_coord, occupancy, temp_factor, segment_id,
-                                  element_symbol)
+  #Parse ATOM and HETATM Records like so
+  if(record_type == "ATOM  " || record_type == "HETATM") {
+    serial_num <- as.integer(substr(fileBody, 7, 11))
+    atom_name <- substr(fileBody, 13, 16)
+    alt_location_id <- substr(fileBody, 17, 17)
+    residue_name <- substr(fileBody, 18, 20)
+    chain_id <- substr(fileBody, 22, 22)
+    residue_seq_num <- as.integer(substr(fileBody, 23, 26))
+    insert_residue_code <- substr(fileBody, 27, 27)
+    x_ortho_coord <- as.numeric(substr(fileBody, 31, 38))
+    y_ortho_coord <- as.numeric(substr(fileBody, 39, 46))
+    z_ortho_coord <- as.numeric(substr(fileBody, 47, 54))
+    occupancy <- as.numeric(substr(fileBody, 55, 60))
+    temp_factor <- as.numeric(substr(fileBody, 61, 66))
+    segment_id <- substr(fileBody, 73, 76)
+    element_symbol <- substr(fileBody, 77, 78)
+    charge <- as.factor(substr(fileBody, 79, 80))
+
+    protein_structure <- data.frame(record_type, serial_num, atom_name, residue_name,
+                                    alt_location_id, chain_id, residue_seq_num,
+                                    insert_residue_code, x_ortho_coord, y_ortho_coord,
+                                    z_ortho_coord, occupancy, temp_factor, segment_id,
+                                    element_symbol)
+  }
+
+  #Parse ANISOU records separately
+  if(record_type == "ANISOU") {
+    serial_num <- as.integer(substr(fileBody, 7, 11))
+    atom_name <- substr(fileBody, 13, 16)
+    alt_location_id <- substr(fileBody, 17, 17)
+    residue_name <- substr(fileBody, 18, 20)
+    chain_id <- substr(fileBody, 22, 22)
+    residue_seq_num <- as.integer(substr(fileBody, 23, 26))
+    insert_residue_code <- substr(fileBody, 27, 27)
+    U1_1 <- as.numeric(substr(fileBody, 29, 35))
+    U2_2 <- as.numeric(substr(fileBody, 36, 42))
+    U3_3 <- as.numeric(substr(fileBody, 43, 49))
+    U1_2 <- as.numeric(substr(fileBody, 50, 56))
+    U1_3 <- as.numeric(substr(fileBody, 57, 63))
+    U2_3 <- as.numeric(substr(fileBody, 64, 70))
+    element_symbol <- substr(fileBody, 77, 78)
+    charge <- as.factor(substr(fileBody, 79, 80))
+
+    anisou_temp_factors <- data.frame(record_type, serial_num, atom_name,
+                                      alt_location_id, residue_name, chain_id,
+                                      residue_seq_num, insert_residue_code, U1_1,
+                                      U2_2, U3_3, U1_2, U1_3, U2_3, element_symbol,
+                                      charge)
+
+    #Join the coordinate data with ANISOU Records
+    dplyr::left_join(protein_structure, anisou_temp_factors, by = serial_num)
+  }
 
   attr(protein_structure, "Protein_Structure")
 

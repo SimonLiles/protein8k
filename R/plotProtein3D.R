@@ -24,12 +24,12 @@
 plot3D <- function(protein, animated = FALSE, groups = NULL) {
 
   #Retrieve protein structure for plotting
-  structure <- getStructure(protein)
+  structure <- getAtomicRecord(protein)
 
   #Animate the plot by spinning
   if(animated == TRUE) {
     #Create a series of .png images
-    magick::png(file = "plot%03d.png", width = 480, height = 480)
+    png(filename = "plot%03d.png", width = 480, height = 480)
     for (i in seq(0, 350 ,10)){
       print(lattice::cloud(z_ortho_coord ~ x_ortho_coord * y_ortho_coord, data = structure,
                            screen = list(z = i, x = -60)))

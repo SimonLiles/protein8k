@@ -4,17 +4,17 @@
 
 #S4 Protein Class Declaration ##################################################
 setClass("Protein", representation(
-  structure = "data.frame",
-  header = "list")
+  header = "list",
+  structure = "data.frame")
 )
 
 #S3 Protein Class Constructor ##################################################
-Protein <- function(prtn_strct, hdr) {
+Protein <- function(hdr, prtn_strct) {
   #Integrity checks go here:
 
   #Put it all together
-  newProteinObject <- list(structure = prtn_strct,
-                          header = hdr)
+  newProteinObject <- list(header = hdr,
+                           structure = prtn_strct)
   class(newProteinObject) <- "Protein"
 
   #Return the new object value

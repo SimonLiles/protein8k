@@ -4,13 +4,13 @@
 \alias{read.pdb}
 \title{read.pdb}
 \usage{
-read.pdb(fileName, createAsS4 = FALSE)
+read.pdb(fileName, createAsS4 = TRUE)
 }
 \arguments{
 \item{fileName}{character string for location and name of file to be read.}
 
 \item{createAsS4}{Logical indicating whether to create the new protein object
-as S4 or not. Defaults to FALSE if not specified. This argument is optional.}
+as S4 or not. Defaults to TRUE if not specified. This argument is optional.}
 }
 \value{
 A new protein object as either an S3 or S4 object.

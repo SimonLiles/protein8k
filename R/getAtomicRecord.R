@@ -1,4 +1,4 @@
-#'getStructure
+#'getAtomicRecord
 #'
 #'@description Retrieve the Atomic Record from a Protein Object
 #'
@@ -10,10 +10,10 @@
 #'@returns Returns a dataframe containing the atomic record. There are 15 variables
 #'  in this data frame.
 #'
-#'@export getStructure
+#'@export getAtomicRecord
 
 #Get protein Structure
-getStructure <- function(protein) {
+getAtomicRecord <- function(protein) {
   #Return structure from an S4 Protein object
   if(pryr::otype(protein) == "S4") {
     return(protein@structure)

@@ -39,7 +39,7 @@ Atomic Record Contains 590 rows
 ```
 
 ## Retrieve the protien structure
-### `getStructure(protein)`
+### `getAtomicRecord(protein)`
 This will return the entire atomic record describing the structure of the protein as a data frame. It is recommended that this function is used instead of accessing the structure through slots or $ syntax because this function will work regardless of whether the Protein Object is S3 or S4. 
 
 ## Creating 3D plots of the protein Structure

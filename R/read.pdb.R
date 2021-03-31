@@ -26,7 +26,7 @@
 #TODO: Add more fault checking.
 read.pdb <- function(fileName, createAsS4 = TRUE) {
   #Read file, seperate by line
-  fileName = "1aieH" #Only for development purposes
+  #fileName = "1aieH" #Only for development purposes
   file <- scan(file = fileName, what = "character", sep = "\n")
 
   #TODO: Ensure read file matches PDB format, if not throw error

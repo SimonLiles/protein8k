@@ -13,7 +13,7 @@
 \arguments{
 \item{object}{A Protein object of either S3 or S4 type.}
 
-\item{...}{other objects passed to summary(). Currently not supported.}
+\item{...}{other objects passed to `summary()`. Currently not supported.}
 }
 \description{
 summary.Protein

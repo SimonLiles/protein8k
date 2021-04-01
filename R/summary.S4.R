@@ -24,7 +24,6 @@
 
 #Implement as S4 generic
 setGeneric("summary", valueClass = c("Protein"))
-# @describeIn summary S4 method for class 'Protein'
 setMethod("summary", signature(object = "Protein"), function(object){
   summary.Protein(object = object)
 })

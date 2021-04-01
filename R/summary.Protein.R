@@ -2,10 +2,6 @@
 #'
 #'@method summary Protein
 #'
-#@aliases summary,Protein,ANY-method
-#@usage \S4method{summary}{Protein,ANY}(object,...)
-#@export summary
-#'
 #'@param object A Protein object of either S3 or S4 type.
 #'@param ... other objects passed to `summary()`. Currently not supported.
 #'
@@ -52,13 +48,6 @@ summary.Protein <- function(object, ...) {
   cat("Atomic Record Contains", nrow(structure), "rows\n")
 
 }
-
-#Implement as S4 generic
-#setGeneric("summary", valueClass = c("Protein", "ANY"))
-# @describeIn summary S4 method for class 'Protein'
-#setMethod("summary", signature(object = "Protein"), function(object, ...){
-#  summary.Protein(object = object, ...)
-#})
 
 #Implement as S3 generic
 UseMethod("summary", "Protein")

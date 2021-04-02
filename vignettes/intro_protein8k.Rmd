@@ -1,0 +1,28 @@
+---
+title: "Introduction to protein8k"
+author: "Simon Liles"
+date: "`2021-04-01`"
+output: rmarkdown::html_vignette
+description: > 
+  Start here if this is your first time using protein8k. You will learn how to
+  get started with this package and what the results of visualizations mean. 
+vignette: >
+  %\VignetteIndexEntry{Introduction to protein8k}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r eval = TRUE, echo = FALSE}
+library(protein8k)
+```
+
+## Creating a Protein Object
+While it is technically possible to hand encode your own Protein Object in this package, it is not recommended. The best way to get started is by reading in a Protein Data Bank file, otherwise known as a PDB. For those that are not familiar with bi0logical macromolecules, these files are used to store information regarding protein structures and experimental data. They also come with a handful of metadata. To read in one of these files, use `read.pdb()` and give it a file directory to a PDB file. A function call may look like this: 
+
+```{r eval = FALSE}
+my_protein <- read.pdb("myProtein.pdb")
+```
+
+This will create a new Protein Object in your global environment. There are other options for creating a new Protein Object, for example `createAsS4` controls whether the new object is created as an S4 or S3 object. The default is to create an S4 object and is the recommended option. If you are doing development that extends this package for example, and need the object to be S3, then this gives you that option. For more information see the help page for `read.pdb()`. 
+
+

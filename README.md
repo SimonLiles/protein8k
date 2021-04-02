@@ -20,6 +20,12 @@ You can copy and paste this code into your console and it should work. If there 
 devtools::install_github("SimonLiles/protein8k")
 ```
 
+If you want vignettes included from the GitHub install, use this code. 
+
+```{r}
+devtools::install_github("SimonLiles/protein8k", build_vignettes = TRUE)
+```
+
 # How to use the package
 Within this package there are many functions that allow for the creation of new Protein Objects, functions for inspecting the contents of the object, and dedicated functions for visualizing and modeling the protein. 
 

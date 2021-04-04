@@ -145,11 +145,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<p>This vignette serves as a getting started guide for the protein8k package. Through detailed explanations and example code, you as the user should be able to gain a good understanding of how this package works and the kinds of analysis you can perform with it.</p>
 <div id="creating-a-protein-object" class="section level2">
 <h2>Creating a Protein Object</h2>
 <p>While it is technically possible to hand encode your own Protein Object in this package, it is not recommended. The best way to get started is by reading in a Protein Data Bank file, otherwise known as a PDB. For those that are not familiar with bi0logical macromolecules, these files are used to store information regarding protein structures and experimental data. They also come with a handful of metadata. To read in one of these files, use <code>read.pdb()</code> and give it a file directory to a PDB file. A function call may look like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_protein <span class="ot">&lt;-</span> <span class="fu">read.pdb</span>(<span class="st">&quot;myProtein.pdb&quot;</span>)</span></code></pre></div>
 <p>This will create a new Protein Object in your global environment. There are other options for creating a new Protein Object, for example <code>createAsS4</code> controls whether the new object is created as an S4 or S3 object. The default is to create an S4 object and is the recommended option. If you are doing development that extends this package for example, and need the object to be S3, then this gives you that option. For more information see the help page for <code>read.pdb()</code>.</p>
+</div>
+<div id="inspecting-protein-data." class="section level2">
+<h2>Inspecting Protein data.</h2>
+<p>Now that you have this object you will want to learn more about what you actually have. While looking at the structure you could interpret what everything means. Maybe look at some documentation on what is inside the object or what was in the PDB. A better option is to use <code>summary()</code> just like how you would with any other R Object.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(p53_tetramerization)</span></code></pre></div>
+<pre><code>## S4 Object of class Protein
+## ID Code: 1AIE     Deposition Date: 1997-04-17 
+## Classification: P53 TETRAMERIZATION                      
+## Title: P53 TETRAMERIZATION DOMAIN CRYSTAL STRUCTURE 
+## Atomic Record Contains 590 rows</code></pre>
+<p>The function will give the above output. You can see if it is an S3 or S4 object. It gives the ID Code of the PDB, which is a unique 4 character string for every PDB. Next is the date the PDB was deposited into the World Wide Protein Data Bank (wwPDB). You can see the classification and title of the PDB, and also the number of records in the Atomic Record.</p>
+</div>
+<div id="what-is-inside-a-protein-object" class="section level2">
+<h2>What is inside a Protein Object</h2>
+<p>The Protein object is constructed of a list of other lists and data frames. Currently there are 2 elements in this list, the header or title section, and the coordinate section in the Atomic Record. The header is a list containing the header line and the title of the PDB. The atomic record is a dataframe with 16 variables. See the documentation on the <a href="library/protein8k/doc/">Protein Class</a> for more details.</p>
+</div>
+<div id="plotting-a-protein-object" class="section level2">
+<h2>Plotting a Protein Object</h2>
+<div id="generating-3d-plots" class="section level3">
+<h3>Generating 3D Plots</h3>
+</div>
+<div id="generating-smoothing-models-of-protein-structure" class="section level3">
+<h3>Generating smoothing models of Protein Structure</h3>
+</div>
 </div>
 
 

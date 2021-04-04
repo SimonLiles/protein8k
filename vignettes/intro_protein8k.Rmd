@@ -14,7 +14,10 @@ vignette: >
 
 ```{r eval = TRUE, echo = FALSE}
 library(protein8k)
+my_Protein <- p53_tetramerization
 ```
+
+This vignette serves as a getting started guide for the protein8k package. Through detailed explanations and example code, you as the user should be able to gain a good understanding of how this package works and the kinds of analysis you can perform with it. 
 
 ## Creating a Protein Object
 While it is technically possible to hand encode your own Protein Object in this package, it is not recommended. The best way to get started is by reading in a Protein Data Bank file, otherwise known as a PDB. For those that are not familiar with bi0logical macromolecules, these files are used to store information regarding protein structures and experimental data. They also come with a handful of metadata. To read in one of these files, use `read.pdb()` and give it a file directory to a PDB file. A function call may look like this: 
@@ -24,5 +27,52 @@ my_protein <- read.pdb("myProtein.pdb")
 ```
 
 This will create a new Protein Object in your global environment. There are other options for creating a new Protein Object, for example `createAsS4` controls whether the new object is created as an S4 or S3 object. The default is to create an S4 object and is the recommended option. If you are doing development that extends this package for example, and need the object to be S3, then this gives you that option. For more information see the help page for `read.pdb()`. 
+
+## Inspecting Protein data. 
+Now that you have this object you will want to learn more about what you actually have. While looking at the structure you could interpret what everything means. Maybe look at some documentation on what is inside the object or what was in the PDB. A better option is to use `summary()` just like how you would with any other R Object. 
+
+```{r, message=FALSE}
+summary(p53_tetramerization)
+```
+
+The function will give the above output. You can see if it is an S3 or S4 object. It gives the ID Code of the PDB, which is a unique 4 character string for every PDB. Next is the date the PDB was deposited into the World Wide Protein Data Bank (wwPDB). You can see the classification and title of the PDB, and also the number of records in the Atomic Record. 
+
+## What is inside a Protein Object
+The Protein object is constructed of a list of other lists and data frames. Currently there are 2 elements in this list, the header or title section, and the coordinate section in the Atomic Record. The header is a list containing the header line and the title of the PDB. The atomic record is a dataframe with 16 variables. See the documentation on Protein class for more details. `?Protein-class`
+
+## Plotting a Protein Object
+PDB files include a lot of data on a protein, however tables of data are not very informative. With the protein8k package it is possible to create several different visualizations of Protein Objects. 
+
+### Generating 3D Plots
+One visualization that not only looks cool, but can also provides a good understanding of the structure of an atom is a 3D plot. A call to the function `plot3D()` will plot every record in the atomic coordinate section from the PDB file. 
+
+This function uses the lattice package to create a 3D cloud of points. It is essentially a wrapper function for plotting the atomic record of points. 
+
+Take this example: 
+```{r}
+#Simple call to plot3D with p53_tetramerization data
+plot3D(p53_tetramerization)
+```
+
+With the `animated` parameter, you can have the protein animated spinning around the y axis. This will temporarily create a series of .png files in your working directory, then put together the animation as a magick object before removing said .png files. If `plot3D()` is not assigned to a variable, it will generate the visualization in the viewer. 
+
+```{r}
+#Animate the protein structure spinning
+plot3D(p53_tetramerization, animated = TRUE)
+```
+
+Currently only cloud models are supported, support for other types and identifying different groups will be added in the future. 
+
+### Generating smoothing models of Protein Structure
+Another useful visualization is to apply smoothing lines to the point in the atomic record. With the `plotModels()` function, one can create a series of visualizations that look at each plane of the structure and apply a smoothing line. 
+
+For example: 
+```{r message=FALSE,error=FALSE,warning=FALSE}
+#Generate a model of each plane of the protein structure
+plotModels(p53_tetramerization)
+```
+
+## -----
+Thank you for reading this Intro to protein8k vignette. 
 
 

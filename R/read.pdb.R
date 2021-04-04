@@ -129,7 +129,7 @@ pdb.parseCoordinates <- function(fileBody) {
                                     alt_location_id, chain_id, residue_seq_num,
                                     insert_residue_code, x_ortho_coord, y_ortho_coord,
                                     z_ortho_coord, occupancy, temp_factor, segment_id,
-                                    element_symbol)
+                                    element_symbol, charge)
   }
 
   #Parse ANISOU records separately

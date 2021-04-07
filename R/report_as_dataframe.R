@@ -9,10 +9,10 @@ report_as_dataframe <- function(filepath) {
   #Read in .jsonl of data report
   #filepath <- "covid19_data/data_report.jsonl"
 
-  records = c(1:length(report))
-
   report <- readLines(filepath)
   report <- lapply(report, rjson::fromJSON)
+
+  records = c(1:length(report))
 
   #get selected records
   selected_records <- report[records]

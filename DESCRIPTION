@@ -8,7 +8,7 @@ Description: This Package can be used for the reading of Protein Data Bank (PDB)
     files, perform analysis, and visualize and model the proteins in 3D. It can 
     also create small .gif files of a protein for presentations. 
 Depends: R (>= 3.1.2)
-Imports: pryr, lattice, methods, magick, dplyr, grid, gridExtra, ggplot2
+Imports: pryr, lattice, methods, magick, dplyr, grid, gridExtra, ggplot2, rjson
 License: CC0
 Encoding: UTF-8
 LazyData: true

@@ -1,18 +1,23 @@
 #'report_as_dataframe
 #'
+#'Function to create a vector of elements from the report
+#'
+#'@param report a list derived a vaccine report from NCBI Datasets
+#'
+#'@param records a vector of indices to pull from the report
+#'
+#'@returns A large dataframe with 23 variables
 #'
 #'@export report_as_dataframe
 
 #Function to create a vector of elements from the report
 #   'records' takes a vector of indices to parse from report
-report_as_dataframe <- function(filepath) {
+report_as_dataframe <- function(report, records = c(1:length(report))) {
   #Read in .jsonl of data report
-  #filepath <- "covid19_data/data_report.jsonl"
-
-  report <- readLines(filepath)
-  report <- lapply(report, rjson::fromJSON)
-
-  records = c(1:length(report))
+  #filepath <- "../covid19_data/data_report.jsonl"
+  #report <- readLines(filepath)
+  #report <- lapply(report, rjson::fromJSON)
+  #records = c(1:length(report))
 
   #get selected records
   selected_records <- report[records]

@@ -4,8 +4,16 @@
 \alias{report_as_dataframe}
 \title{report_as_dataframe}
 \usage{
-report_as_dataframe(filepath)
+report_as_dataframe(report, records = c(1:length(report)))
+}
+\arguments{
+\item{report}{a list derived a vaccine report from NCBI Datasets}
+
+\item{records}{a vector of indices to pull from the report}
+}
+\value{
+A large dataframe with 23 variables
 }
 \description{
-report_as_dataframe
+Function to create a vector of elements from the report
 }

@@ -7,7 +7,7 @@
 #   'records' takes a vector of indices to parse from report
 report_as_dataframe <- function(filepath) {
   #Read in .jsonl of data report
-  filepath <- "covid19_data/data_report.jsonl"
+  #filepath <- "covid19_data/data_report.jsonl"
 
   records = c(1:length(report))
 

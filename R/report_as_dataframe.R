@@ -1,12 +1,15 @@
 #'report_as_dataframe
 #'
-#'Function to create a vector of elements from the report
+#'Function to transform a list of NCBI Virus Report metadata into a table.
 #'
-#'@param report a list derived a vaccine report from NCBI Datasets
+#'@usage report_as_dataframe(report, records = c(1:length(report)))
 #'
-#'@param records a vector of indices to pull from the report
+#'@param report a list derived a vaccine report from NCBI Datasets.
 #'
-#'@returns A large dataframe with 23 variables
+#'@param records a vector of indices to pull from the report.
+#'
+#'@returns A large dataframe with 23 variables containig metadata from NCBI Virus
+#'  report.
 #'
 #'@export report_as_dataframe
 
@@ -27,9 +30,10 @@ report_as_dataframe <- function(report, records = c(1:length(report))) {
 
   #Variables to keep track of progress
   counter <- 1
-  report_length <- length(selected_records)
+  report_length <- length(report)
 
-  cat("There are", report_length, "in given report.\n")
+  cat("There are", report_length, "records in given report.\n")
+  cat(length(selected_records), "records have been selected.\n")
   cat("\nConverting report from list to data frame...\n")
 
   for(record in selected_records) {

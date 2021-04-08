@@ -15,5 +15,5 @@ a large list, each element containg the contents of a JSON file after
    being converted.
 }
 \description{
-fromJSONL
+Decode a JSON List into an R List Object.
 }

@@ -4,9 +4,11 @@
 #'
 #'@param protein Protein object to be plotted
 #'@param animated logical indicating whether the object is to be animated in the
-#'  viewer.
-#'@param groups indicate which groups to color. This argument is still in development
-#'  and does not currently work.
+#'  viewer. Will spin on the Z axis.
+#'@param type character indicating the type of cloud plot.
+#'@param groups indicate which groups to color. Pass the name of the column from
+#'  the Atomic Coordinate section, and it will color the points.
+#'@param screen list of x, y, and z angles to orientate the plot.
 #'
 #'@details This function uses lattice and magick to create the 3D plot and animate
 #'  it.
@@ -21,7 +23,8 @@
 #'@import grDevices
 
 #Create a 3d plot of the protein
-plot3D <- function(protein, animated = FALSE, groups = NULL) {
+plot3D <- function(protein, animated = FALSE, type = "p", groups = NULL,
+                   screen = list(x = -60, z = 0, y = 0)) {
 
   #Retrieve protein structure for plotting
   structure <- getAtomicRecord(protein)
@@ -32,7 +35,9 @@ plot3D <- function(protein, animated = FALSE, groups = NULL) {
     png(filename = "plot%03d.png", width = 480, height = 480)
     for (i in seq(0, 350 ,10)){
       print(lattice::cloud(z_ortho_coord ~ x_ortho_coord * y_ortho_coord, data = structure,
-                           screen = list(z = i, x = -60)))
+                           type = type,
+                           groups = rlang::enquo(groups),
+                           screen = list(z = i, x = screen$x, y = screen$y)))
     }
     dev.off()
 
@@ -54,6 +59,9 @@ plot3D <- function(protein, animated = FALSE, groups = NULL) {
 
   } else {
     #If animated is FALSE, create static 3d plot
-    lattice::cloud(z_ortho_coord ~ x_ortho_coord * y_ortho_coord, data = structure)
+    lattice::cloud(z_ortho_coord ~ x_ortho_coord * y_ortho_coord, data = structure,
+                   type = type,
+                   groups = rlang::enquo(groups),
+                   screen = screen)
   }
 }

@@ -58,7 +58,7 @@ With the `animated` parameter, you can have the protein animated spinning around
 
 ```{r}
 #Animate the protein structure spinning
-plot3D(p53_tetramerization, animated = TRUE)
+#plot3D(p53_tetramerization, animated = TRUE)
 ```
 
 Currently only cloud models are supported, support for other types and identifying different groups will be added in the future. 

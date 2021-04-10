@@ -4,16 +4,26 @@
 \alias{plot3D}
 \title{plot3D}
 \usage{
-plot3D(protein, animated = FALSE, groups = NULL)
+plot3D(
+  protein,
+  animated = FALSE,
+  type = "p",
+  groups = NULL,
+  screen = list(x = -60, z = 0, y = 0)
+)
 }
 \arguments{
 \item{protein}{Protein object to be plotted}
 
 \item{animated}{logical indicating whether the object is to be animated in the
-viewer.}
+viewer. Will spin on the Z axis.}
 
-\item{groups}{indicate which groups to color. This argument is still in development
-and does not currently work.}
+\item{type}{character indicating the type of cloud plot.}
+
+\item{groups}{indicate which groups to color. Pass the name of the column from
+the Atomic Coordinate section, and it will color the points.}
+
+\item{screen}{list of x, y, and z angles to orientate the plot.}
 }
 \value{
 An object to be plotted. If not assigned to a variable, it will plot

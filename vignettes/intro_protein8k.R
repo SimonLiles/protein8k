@@ -14,7 +14,7 @@ plot3D(p53_tetramerization)
 
 ## -----------------------------------------------------------------------------
 #Animate the protein structure spinning
-plot3D(p53_tetramerization, animated = TRUE)
+#plot3D(p53_tetramerization, animated = TRUE)
 
 ## ----message=FALSE,error=FALSE,warning=FALSE----------------------------------
 #Generate a model of each plane of the protein structure

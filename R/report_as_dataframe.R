@@ -70,11 +70,11 @@ report_as_dataframe <- function(report, records = c(1:length(report))) {
     virus_taxID <- pass_value(record$virus$taxId)
 
     record_v <- c(accession, completeness, geneCount, isAnnotated, isolate_collectionDate,
-                  isolate_name, isolate_source, length, geo_Location, geo_Region,
-                  maturePeptideCount, molType, nucleotide_accessionVersion, nucleotide_seqID,
-                  nucleotide_sequenceHash, nucleotide_title, nucleotideCompleteness,
-                  proteinCount, releaseDate, sourceDatabase, updateDate, virus_sciName,
-                  virus_taxID)
+                  isolate_name, isolate_source, length, bioProjects, geo_Location,
+                  geo_Region,maturePeptideCount, molType, nucleotide_accessionVersion,
+                  nucleotide_seqID,nucleotide_sequenceHash, nucleotide_title,
+                  nucleotideCompleteness,proteinCount, releaseDate, sourceDatabase,
+                  updateDate, virus_sciName,virus_taxID)
 
     # Combine into Data Frame ##################################################
     report_df <- rbind(report_df, record_v)

@@ -86,7 +86,7 @@ report_as_dataframe <- function(report, records = c(1:length(report))) {
   #Set names of columns for access
   colnames(report_df) <- c("accession", "completeness", "geneCount", "isAnnotated",
                            "isolate_collectionDate", "isolate_name", "isolate_source",
-                           "length", "geo_Location", "geo_Region", "maturePeptideCount",
+                           "length", "bioProjects", "geo_Location", "geo_Region", "maturePeptideCount",
                            "molType", "nucleotide_accessionVersion", "nucleotide_seqID",
                            "nucleotide_sequenceHash", "nucleotide_title", "nucleotideCompleteness",
                            "proteinCount", "releaseDate", "sourceDatabase", "updateDate",

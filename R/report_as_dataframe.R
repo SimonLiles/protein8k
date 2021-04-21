@@ -52,6 +52,7 @@ report_as_dataframe <- function(report, records = c(1:length(report))) {
     isolate_name <- pass_value(record$isolate$name)
     isolate_source <- pass_value(record$isolate$source)
     length <- pass_value(record$length)
+    bioProjects <- pass_value(record$bioprojects)
     geo_Location <- pass_value(record$location$geographicLocation)
     geo_Region <- pass_value(record$location$geographicRegion)
     maturePeptideCount <- pass_value(record$maturePeptideCount)

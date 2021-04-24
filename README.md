@@ -56,10 +56,14 @@ Atomic Record Contains 590 rows
 ## Visualizing the Protein
 
 ### Creating 3D plots of the protein Atomic Record
-#### `plotProtein3D(protein, animated = FALSE, groups = NULL)`
-This function is still in development. More will be added later, the `groups` parameter is currently still unsupported. 
+#### `plot3D(protein, animated = FALSE, type = "p", groups = NULL, screen = list(x = -60, z = 0, y = 0))`
+This function is still in development. More will be added later.
 
 It is a wrapper function for plotting the protein structure in 3D using the lattice package. Setting `animated` to `TRUE` will create a short animation of the protein spinning. 
+
+The `type` parameter changes the type of points that are plotted, can be points, lines, both, or histogram sticks. 
+
+The `groups` paramter specifies which variable to use to color the points. Currently there is not a legend nor support for different palates. These features will be added at a later time. 
 
 ### Creating 2D Models of the Protein Atomic Record
 #### `plotModels(protein, separate = FALSE)`

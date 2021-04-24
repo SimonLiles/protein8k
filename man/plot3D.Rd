@@ -13,17 +13,24 @@ plot3D(
 )
 }
 \arguments{
-\item{protein}{Protein object to be plotted}
+\item{protein}{Protein object to be plotted. Can be either of S3 or S4 Protien
+object type.}
 
 \item{animated}{logical indicating whether the object is to be animated in the
-viewer. Will spin on the Z axis.}
+viewer. Will spin the plot on the Z axis.}
 
-\item{type}{character indicating the type of cloud plot.}
+\item{type}{character vector indicating the type of cloud plot. Can include one
+or more of "p", "l", "h", or "b". "p" and "l" mean points and lines respectively,
+and "b" means both. "h" stands for histogram and draws lines from each point
+to the XY plane, either lower or upper bounding box face, whichever is closer.}
 
-\item{groups}{indicate which groups to color. Pass the name of the column from
-the Atomic Coordinate section, and it will color the points.}
+\item{groups}{the name of a column from the Atomic Record of the protein. Causes
+the points to be colored by the different values in that group.}
 
-\item{screen}{list of x, y, and z angles to orientate the plot.}
+\item{screen}{A list determining the sequence of rotations to be applied to the
+data before plotting. Each componenet of the list should be one of "x", "y"
+or "z", repetitions are allowed with values indicating amount of rotation in
+degrees.}
 }
 \value{
 An object to be plotted. If not assigned to a variable, it will plot

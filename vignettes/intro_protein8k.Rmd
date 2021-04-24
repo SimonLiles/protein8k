@@ -58,10 +58,10 @@ With the `animated` parameter, you can have the protein animated spinning around
 
 ```{r}
 #Animate the protein structure spinning
-#plot3D(p53_tetramerization, animated = TRUE)
+plot3D(p53_tetramerization, animated = TRUE)
 ```
 
-Currently only cloud models are supported, support for other types and identifying different groups will be added in the future. 
+The `plot3D()` function can take further parameters to improve the quality of the plot, however there are numerous transformations to the plot that are possible and are outside of the scope of this vignette. Please see the vignette specifically about using `plot3D()` for more information. 
 
 ### Generating smoothing models of Protein Structure
 Another useful visualization is to apply smoothing lines to the point in the atomic record. With the `plotModels()` function, one can create a series of visualizations that look at each plane of the structure and apply a smoothing line. 

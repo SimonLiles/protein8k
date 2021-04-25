@@ -1,0 +1,88 @@
+---
+title: "Using `plot3D()`"
+author: "Simon Liles"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using `plot3D()`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r eval = TRUE, echo = FALSE}
+library(protein8k)
+```
+
+One of the core functionalities of protein8k is the ability to plot a 3 dimensional model of a protein's atomic record. This vignette serves to explore the function that enables this capability, `plot3D()`. This function is primarily a wrapper function of the lattice `cloud()` function, thus much of the functionality of this function should feel familiar to those with experience in lattice. 
+
+## The Most Basic Plot
+Creating a simple plot is very easy. The following code creates a simple plot looking at what could be considered the "front" of the protein.
+
+```{r, echo=FALSE}
+plot3D(p53_tetramerization)
+```
+
+This visual is not very aesthetically pleasing, nor does it provide any insight. The next few sections will demonstrate how to use the various arguments in `plot3D()` to make insightful 3D visualizations of a protein's atomic record. 
+
+## Animation
+One of the quickest ways to gain additional insight into a protein's structure is to animate a plot of it spinning on an axis. When animating the plot, the function will create a series of PNG images looking at the plot from different angles before combining them into a single GIF and plotting to the viewer. 
+
+```{r}
+plot3D(p53_tetramerization, animated = TRUE)
+```
+
+Now that the protein is spinning about an axis you can more clearly see the structures that it is made of. 
+
+## Changing Drawing Type
+A simple cloud of points or crosses is not always very insightful. Fortunately, `plot3D()` has a number of options including points, lines, and histograms. The histogram is special becuase for every point it will draw a line to a face on the XY plane, either the lower or upper bound depending on which is closer. It is also poossible to specify both lines and points. To change the drawing type, set the `type` argument to one of the following: 
+
+* Points: "p"
+* Lines: "l"
+* Lines and Points: "b"
+* Histogram: "h"
+
+```{r}
+plot3D(p53_tetramerization, type = "p")
+plot3D(p53_tetramerization, type = "l")
+plot3D(p53_tetramerization, type = "b")
+plot3D(p53_tetramerization, type = "h")
+```
+
+## Setting groups Variable
+Often to gain better insight into how a protein is constructed one requires colors to be applied based on some grouping variable. This is easily done with `plot3D()`. Set the groups argument to any one of the columns found in the atomic record of the Protein object. 
+
+```{r, message=FALSE,warning=FALSE}
+plot3D(p53_tetramerization, groups = residue_name)
+plot3D(p53_tetramerization, groups = residue_seq_num)
+```
+
+At this point in the development. legends are not supported. 
+
+## Changing the Orientation Using screen
+Another part of the visualization that can be changed is the screen argument This argument is a list of transformations that rotate the visualization. Each rotation is specified on the X, Y, or Z axis, in some number of degrees. The rotations are performed in the order they are listed, and rotations on the same axis can be repeated. 
+
+For example, here is a single transformation of the same scale on each axis: 
+```{r}
+plot3D(p53_tetramerization, screen = list())
+plot3D(p53_tetramerization, screen = list(x = 30)) #X axis, 30 degrees
+plot3D(p53_tetramerization, screen = list(y = 30)) #Y axis, 30 degrees
+plot3D(p53_tetramerization, screen = list(z = 30)) #Z axis, 30 degrees
+```
+
+Generally it is recommended that when rotating the plot for a better angle, begin with the z axis to rotate around, then angle up or down with the x axis. This will keep the plot more readable and reduce confusion regarding the orientation of the plot. Generally transformations on the y are not necessary. 
+
+Also, keep in mind that the screen argument will not have any effect when `animated = TRUE`. 
+
+```{r}
+plot3D(p53_tetramerization, screen = list(z = -30, x = -60))
+```
+
+## Putting it all Together
+Now we can put it all together and make insightful and aesthetically pleasing visualizations. 
+
+```{r}
+plot3D(p53_tetramerization, type = "l", groups = residue_name, 
+       screen = list(z = -30, x = -60))
+plot3D(p53_tetramerization, animated = TRUE, type = "l", groups = residue_name)
+```
+

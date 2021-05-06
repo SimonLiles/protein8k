@@ -16,6 +16,10 @@
 #'  data before plotting. Each componenet of the list should be one of "x", "y"
 #'  or "z", repetitions are allowed with values indicating amount of rotation in
 #'  degrees.
+#'@param image_width width of the resulting image in pixels. Currently only applies
+#'  when `animated = TRUE`. Defaults to 480 pixels.
+#'@param image_height hieght of the resulting image in pixels. Currently only applies
+#'  when `animated = TRUE`. Defaults to 480 pixels.
 #'
 #'@details This function uses lattice and magick to create the 3D plot and animate
 #'  it.
@@ -31,7 +35,8 @@
 
 #Create a 3d plot of the protein
 plot3D <- function(protein, animated = FALSE, type = "p", groups = NULL,
-                   screen = list(x = -60, z = 0, y = 0)) {
+                   screen = list(x = -60, z = 0, y = 0),
+                   image_width = 480, image_height = 480) {
 
   #Retrieve protein structure for plotting
   structure <- getAtomicRecord(protein)
@@ -44,7 +49,7 @@ plot3D <- function(protein, animated = FALSE, type = "p", groups = NULL,
   #Animate the plot by spinning
   if(animated == TRUE) {
     #Create a series of .png images
-    png(filename = "plot%03d.png", width = 480, height = 480)
+    png(filename = "plot%03d.png", width = image_width, height = image_height)
     for (i in seq(0, 350 ,10)){
       print(lattice::cloud(z_ortho_coord ~ x_ortho_coord * y_ortho_coord, data = structure,
                            type = type,

@@ -9,7 +9,9 @@ plot3D(
   animated = FALSE,
   type = "p",
   groups = NULL,
-  screen = list(x = -60, z = 0, y = 0)
+  screen = list(x = -60, z = 0, y = 0),
+  image_width = 480,
+  image_height = 480
 )
 }
 \arguments{
@@ -31,6 +33,12 @@ the points to be colored by the different values in that group.}
 data before plotting. Each componenet of the list should be one of "x", "y"
 or "z", repetitions are allowed with values indicating amount of rotation in
 degrees.}
+
+\item{image_width}{width of the resulting image in pixels. Currently only applies
+when `animated = TRUE`. Defaults to 480 pixels.}
+
+\item{image_height}{hieght of the resulting image in pixels. Currently only applies
+when `animated = TRUE`. Defaults to 480 pixels.}
 }
 \value{
 An object to be plotted. If not assigned to a variable, it will plot

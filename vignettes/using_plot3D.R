@@ -13,7 +13,7 @@ plot3D(p53_tetramerization, type = "l")
 plot3D(p53_tetramerization, type = "b")
 plot3D(p53_tetramerization, type = "h")
 
-## ---- echo=FALSE--------------------------------------------------------------
+## ---- message=FALSE,warning=FALSE---------------------------------------------
 plot3D(p53_tetramerization, groups = residue_name)
 plot3D(p53_tetramerization, groups = residue_seq_num)
 

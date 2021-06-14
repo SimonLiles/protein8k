@@ -2,22 +2,23 @@
 #'
 #'Decode a JSON List into an R List Object.
 #'
-#'@usage fromJSONL(filepath)
-#'
 #'@param filepath A character string indicating the filepath from the working
 #'    directory to the desired file.
+#'
+#'@param maxLines An integer representing the max number of lines to read. Negative
+#'    values indicate that one should read up to the end of input on the connection.
 #'
 #'@returns a large list, each element containg the contents of a JSON file after
 #'    being converted.
 #'
 #'@export fromJSONL
 
-fromJSONL <- function(filepath) {
+fromJSONL <- function(filepath, maxLines = -1) {
   #Status message regarding process
   cat("Reading in JSONL data\n")
 
   #Read each line from the json file
-  file_v <- readLines(filepath)
+  file_v <- readLines(filepath, n = maxLines)
 
   #Create an empty list to store new elements
   report <- list()

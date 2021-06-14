@@ -4,11 +4,14 @@
 \alias{fromJSONL}
 \title{fromJSONL}
 \usage{
-fromJSONL(filepath)
+fromJSONL(filepath, maxLines = -1)
 }
 \arguments{
 \item{filepath}{A character string indicating the filepath from the working
 directory to the desired file.}
+
+\item{maxLines}{An integer representing the max number of lines to read. Negative
+values indicate that one should read up to the end of input on the connection.}
 }
 \value{
 a large list, each element containg the contents of a JSON file after

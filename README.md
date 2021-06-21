@@ -3,7 +3,7 @@ V0.0.0.9005
 
 Author: Simon Liles
 
-Maintainer: Simon Liles, simon@sveoti.net
+Maintainer: Simon Liles, simon@quantknot.com
 
 This is a package that can be used for the visual analysis of proteins. 
 

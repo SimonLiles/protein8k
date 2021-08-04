@@ -1,12 +1,15 @@
 Package: protein8k
 Type: Package
 Title: Perfom Analysis and Create Visualizations of Proteins
-Version: 0.0.0.9006
+Version: 0.0.1
 Author: Simon Liles
 Maintainer: Simon Liles <simon@quantknot.com>
-Description: This Package can be used for the reading of Protein Data Bank (PDB)
-    files, perform analysis, and visualize and model the proteins in 3D. It can 
-    also create small .gif files of a protein for presentations. 
+Description: This package is based on an agglomerative model-a bottom-up approach 
+    to analyze the Protein organisms dataset. The package reads Protein Data Bank 
+    (PDB) files, performs its analysis, and presents the result using different 
+    visualization types including 3D. The package also has additional capability
+    for handling Virus Report data from the National Center for Biotechnology 
+    Information (NCBI) database.
 Depends: R (>= 3.1.2)
 Imports: pryr, lattice, methods, magick, dplyr, grid, gridExtra, ggplot2, rjson, rlang, shiny
 License: CC0

@@ -49,7 +49,9 @@ plot3D <- function(protein, animated = FALSE, type = "p", groups = NULL,
   #Animate the plot by spinning
   if(animated == TRUE) {
     #Create a series of .png images
-    png(filename = "plot%03d.png", width = image_width, height = image_height)
+    #png(filename = "plot%03d.png", width = image_width, height = image_height)
+    plotFileName <- tempfile(pattern = "plot", tmpdir = tempdir(), fileext = "%03d.png")
+    png(filename = plotFileName, width = image_width, height = image_height)
     for (i in seq(0, 350 ,10)){
       print(lattice::cloud(z_ortho_coord ~ x_ortho_coord * y_ortho_coord, data = structure,
                            type = type,
@@ -59,9 +61,10 @@ plot3D <- function(protein, animated = FALSE, type = "p", groups = NULL,
     dev.off()
 
     #Read the .png images into a vector
-    img <- magick::image_read("plot001.png")
+    firstPlotName <- gsub("%03d.png", "001.png", plotFileName)
+    img <- magick::image_read(firstPlotName)
     for (i in 1:36) {
-      frameFileName <- sprintf("plot%03d.png", i)
+      frameFileName <- sprintf(plotFileName, i)
       nextFrame <- magick::image_read(frameFileName)
       img <- c(img, nextFrame)
     }
@@ -70,7 +73,7 @@ plot3D <- function(protein, animated = FALSE, type = "p", groups = NULL,
     animation <- magick::image_animate(img, fps = 10)
 
     #Clean up the workspace
-    file.remove(list.files(pattern=".png"))
+    #file.remove(list.files(pattern=".png"))
 
     return(animation)
 

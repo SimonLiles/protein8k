@@ -15,6 +15,9 @@
 
 \item{...}{other objects passed to `summary()`. Currently not supported.}
 }
+\value{
+Does not return a value.
+}
 \description{
 summary.Protein
 }

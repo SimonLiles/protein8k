@@ -14,6 +14,9 @@ write_viz(image, path = "my_image", format = "png")
 \item{format}{file type to save the image as. Can be "png", "jpeg", "gif", "rgb",
 or "rgba".}
 }
+\value{
+Does not return a value.
+}
 \description{
 Wrapper function for writing images to the disk. This function comes from the
 magick package under the same name.

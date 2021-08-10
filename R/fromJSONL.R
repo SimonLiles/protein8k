@@ -15,7 +15,7 @@
 
 fromJSONL <- function(filepath, maxLines = -1) {
   #Status message regarding process
-  cat("Reading in JSONL data\n")
+  message("Reading in JSONL data\n", appendLF = FALSE)
 
   #Read each line from the json file
   file_v <- readLines(filepath, n = maxLines)
@@ -28,7 +28,7 @@ fromJSONL <- function(filepath, maxLines = -1) {
   for(element in file_v) {
     #Progress report for very large data sets
     prcnt_prgrs <- (counter / length(file_v)) * 100
-    cat(sprintf("Progress: %.2f%% \r", prcnt_prgrs))
+    message(sprintf("Progress: %.2f%% \r", prcnt_prgrs), appendLF = FALSE)
 
     report[[length(report) + 1]] <- rjson::fromJSON(element)
 
@@ -36,7 +36,7 @@ fromJSONL <- function(filepath, maxLines = -1) {
   }
 
   #Inform that process is complete
-  cat("\nFinished reading JSONL data\n\n")
+  message("\nFinished reading JSONL data\n\n")
 
   return(report)
 }

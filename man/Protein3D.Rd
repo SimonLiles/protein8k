@@ -9,6 +9,9 @@ Protein3D(protein)
 \arguments{
 \item{protein}{Protein object to use in plotting}
 }
+\value{
+Does not return a value.
+}
 \description{
 Opens a viewer for exploratory and interactive analysis of a protein structure.
 }

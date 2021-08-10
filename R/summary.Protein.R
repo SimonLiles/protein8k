@@ -15,6 +15,8 @@
 #'    \item The number of rows in the Atomic Record.
 #'    }
 #'
+#'@returns Does not return a value.
+#'
 #'@export summary.Protein
 #'@exportMethod summary
 #'@rawNamespace S3method(summary, Protein)

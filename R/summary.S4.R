@@ -20,6 +20,8 @@
 #'    \item The number of rows in the Atomic Record.
 #'    }
 #'
+#'@returns Does not return a value.
+#'
 #'@exportMethod summary
 
 #Implement as S4 generic

@@ -4,6 +4,8 @@
 #'
 #'@param protein Protein object to use in plotting
 #'
+#'@returns Does not return a value.
+#'
 #'@export Protein3D
 #'
 

@@ -8,6 +8,8 @@
 #' @param format file type to save the image as. Can be "png", "jpeg", "gif", "rgb",
 #'   or "rgba".
 #'
+#' @returns Does not return a value.
+#'
 #'@export write_viz
 
 write_viz <- function(image, path = "my_image", format = "png") {

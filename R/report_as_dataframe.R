@@ -32,14 +32,14 @@ report_as_dataframe <- function(report, records = c(1:length(report))) {
   counter <- 1
   report_length <- length(report)
 
-  cat("There are", report_length, "records in given report.\n")
-  cat(length(selected_records), "records have been selected.\n")
-  cat("\nConverting report from list to data frame...\n")
+  message("There are ", report_length, " records in given report.")
+  message(length(selected_records), " records have been selected.")
+  message("\nConverting report from list to data frame...")
 
   for(record in selected_records) {
     #Progress report for very large data sets
     prcnt_prgrs <- (counter / length(selected_records)) * 100
-    cat(sprintf("Progress: %.2f%% \r", prcnt_prgrs))
+    message(sprintf("Progress: %.2f%% \r", prcnt_prgrs), appendLF = FALSE)
 
     # Create vector of values ##################################################
     #Description of the schema can be found here:
@@ -105,7 +105,7 @@ report_as_dataframe <- function(report, records = c(1:length(report))) {
   report_df$updateDate <- as.Date(report_df$updateDate, format = "%Y-%m-%d")
 
   #Finish message
-  cat("\nFinished converting report from list to data frame\n")
+  message("\nFinished converting report from list to data frame")
 
   return(report_df)
 }

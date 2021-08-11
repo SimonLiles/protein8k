@@ -8,6 +8,9 @@ Description: Read Protein Data Bank (PDB) files, performs its analysis, and
     presents the result using different visualization types including 3D. The 
     package also has additional capability for handling Virus Report data from 
     the National Center for Biotechnology Information (NCBI) database.
+    
+    Nature Structural Biology 10, 980 (2003) <doi:10.1038/nsb1203-980>
+    US National Library of Medicine (2021) <web:https://www.ncbi.nlm.nih.gov/datasets/docs/reference-docs/data-reports/virus/>
 Depends: R (>= 3.1.2)
 Imports: pryr, lattice, methods, magick, dplyr, grid, gridExtra, ggplot2, rjson, rlang, shiny
 License: CC0
